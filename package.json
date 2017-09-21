@@ -1,0 +1,13 @@
+{
+  "name": "pubg_pusher_app",
+  "version": "0.1.0",
+  "description": "PUBG stats pusher bot",
+  "author": "First Last <first.last@example.com>",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": ">=4.15.4"
+  }
+}

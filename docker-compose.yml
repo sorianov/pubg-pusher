@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  pubg-pusher:
+    build: .
+    container_name: pubg_pusher_app
+    networks:
+      - test
+    ports:
+      - "8080:8080"
+
+networks:
+  test:
+    driver: bridge

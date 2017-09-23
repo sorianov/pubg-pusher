@@ -11,6 +11,14 @@ const api = new PubgAPI({
   // },
 });
 
+fetcher(name, [specific_fields]) {
+  results = fetch_decision(name)
+  final_results = parse_result([specific_fields])
+}
+
+parse_result([specific_fields]) {
+
+}
 
 fetch_decision(name) {
   result = () => {

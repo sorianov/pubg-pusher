@@ -8,6 +8,8 @@ services:
       - test
     ports:
       - "8080:8080"
+    volumes:
+      - .:/pubg-pusher
 
 networks:
   test:

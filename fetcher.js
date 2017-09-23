@@ -11,61 +11,63 @@ const api = new PubgAPI({
   // },
 });
 
-function fetcher(name, specific_stats) {
-  results = fetch_decision(name)
-  final_results = parse_result(specific_stats)
-}
+class Fetch {
+  constructor(nickname){
+    this.nickname = nickname;
+  }
+  
+  fetcher(name, specific_stats) {
+    results = fetch_decision(name)
+    final_results = parse_result(specific_stats)
+  
 
-function parse_result(specific_stats) {
-  //TODO: ADD FUNCTIONALITY
-  return 1;
-}
+  parse_result(specific_stats) {
+    //TODO: ADD FUNCTIONALITY
+    return 1;
+  }
+  
 
-function fetch_decision(name) {
-  result = () => {
-  if (typeof name === 'string')
-    fetch_single(name);
-  else if (Array.isArray(name))
-    fetch_multi(name);
-  else
-    throw new InvalidFetchType(name)
-  };
-  return result
-}
+  fetch_decision(name) {
+    result = () => {
+    if (typeof name === 'string')
+      fetch_single(name);
+    else if (Array.isArray(name))
+      fetch_multi(name);
+    else
+      throw new InvalidFetchType(name)
+    };
+    return result
+  }
+  
 
-function fetch_single(name) {
-  api.getProfileByNickname(name)
-    .then( profile => {
-      const stats = profile.getStats({
-        region: REGION.NA,
-        season: SEASON.EA2017pre4,
-        match: MATCH.SQUADFPP
-      })
-    .then( stats => {
-      if (stats.ok)
-        return stats;
-      else
-        throw new StatsNotFound();
+  fetch_single(name) {
+    api.getProfileByNickname(name).then( 
+      profile => {
+        const stats = profile.getStats({
+          region: REGION.NA,
+          season: SEASON.EA2017pre4,
+          match: MATCH.SQUADFPP
+        })}.then( 
+        stats => {
+          if (stats.ok)
+            return stats;
+          else
+            throw new StatsNotFound();
+      });
+    };
+  }
+  
+
+  fetch_multi(name) {
+    let fetch_results = [];
+
+    name.foreach( nickname => {
+      fetch_results.push(fetch_single(nickname));
     });
-  });
-}
+  }
 
-function fetch_multi(name) {
-  let fetch_results = []
+};
 
-  name.foreach( nickname => {
-    fetch_results.push(fetch_single(nickname));
-  })
-
-}
-
-// api.getProfileByNickname('just____')
-//   .then((profile) => {
-//     const data = profile.content;
-//     const stats = profile.getStats({
-//       region: REGION.NA, // defaults to profile.content.selectedRegion
-//       season: SEASON.EA2017pre4, // defaults to profile.content.defaultSeason
-//       match: MATCH.SQUADFPP // defaults to SOLO
-//     });
-//     console.log(stats);
-//   });
+module.exports = {
+  Fetch
+};

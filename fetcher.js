@@ -1,5 +1,5 @@
 const {PubgAPI, PubgAPIErrors, REGION, SEASON, MATCH} = require('pubg-api-redis');
-import {InvalidFetchType} from './pubg-pusher-errors'
+const {InvalidFetchType} = require('./pubg-pusher-errors');
 
 const api = new PubgAPI({
   apikey: process.env.PUBGTRACKER_API_KEY,
@@ -11,16 +11,17 @@ const api = new PubgAPI({
   // },
 });
 
-fetcher(name, [specific_fields]) {
+function fetcher(name, specific_stats) {
   results = fetch_decision(name)
-  final_results = parse_result([specific_fields])
+  final_results = parse_result(specific_stats)
 }
 
-parse_result([specific_fields]) {
-
+function parse_result(specific_stats) {
+  //TODO: ADD FUNCTIONALITY
+  return 1;
 }
 
-fetch_decision(name) {
+function fetch_decision(name) {
   result = () => {
   if (typeof name === 'string')
     fetch_single(name);
@@ -32,9 +33,9 @@ fetch_decision(name) {
   return result
 }
 
-fetch_single(name) {
+function fetch_single(name) {
   api.getProfileByNickname(name)
-    .then((profile) => {
+    .then( profile => {
       const stats = profile.getStats({
         region: REGION.NA,
         season: SEASON.EA2017pre4,
@@ -49,11 +50,11 @@ fetch_single(name) {
   });
 }
 
-fetch_multi(name) {
+function fetch_multi(name) {
   let fetch_results = []
 
-  name.foreach(function(nickname) => {
-    fetch_results.push(fetch_single(nickname);)
+  name.foreach( nickname => {
+    fetch_results.push(fetch_single(nickname));
   })
 
 }

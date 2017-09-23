@@ -4,6 +4,8 @@ services:
   pubg-pusher:
     build: .
     container_name: pubg_pusher_app
+    environment:
+      PUBGTRACKER_API_KEY: "${PUBGTRACKER_API_KEY}"
     networks:
       - test
     ports:

@@ -1,5 +1,6 @@
 const {PubgAPI, PubgAPIErrors, REGION, SEASON, MATCH} = require('pubg-api-redis');
 const {InvalidFetchType} = require('./pubg-pusher-errors');
+const {FetchParameters} = require('./fetchparameters');
 
 const api = new PubgAPI({
   apikey: process.env.PUBGTRACKER_API_KEY,
@@ -12,18 +13,32 @@ const api = new PubgAPI({
 });
 
 class Fetch {
-  constructor(nickname){
+  constructor(nickname,region='na',season='current',match='squad'){
     this.nickname = nickname;
+    this.stat_parameters = new FetchParameters(
+      region,
+      season,
+      match 
+      );
+
+  }
+
+  fetch (){
+    API.getProfileByNickname(this.nickname).then(
+     profile => {
+
+     } )
+
   }
   
   fetcher(name, specific_stats) {
     results = fetch_decision(name)
     final_results = parse_result(specific_stats)
-  
+  }  
 
   parse_result(specific_stats) {
     //TODO: ADD FUNCTIONALITY
-    return 1;
+    return specific_stats;
   }
   
 
@@ -47,14 +62,13 @@ class Fetch {
           region: REGION.NA,
           season: SEASON.EA2017pre4,
           match: MATCH.SQUADFPP
-        })}.then( 
+        })}).then( 
         stats => {
           if (stats.ok)
             return stats;
           else
             throw new StatsNotFound();
       });
-    };
   }
   
 

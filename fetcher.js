@@ -15,7 +15,7 @@ const api = new PubgAPI({
 class Fetch {
   constructor(nickname,region='na',season='current',match='squad'){
     this.nickname = nickname;
-    this.stat_parameters = new FetchParameters(
+    this.fetch_parameters = new FetchParameters(
       region,
       season,
       match 
@@ -26,6 +26,10 @@ class Fetch {
   fetch (){
     API.getProfileByNickname(this.nickname).then(
      profile => {
+      profile.getStats(this.fetch_parameters).then(
+        stats => {
+          console.log(stats);
+        })
 
      } )
 

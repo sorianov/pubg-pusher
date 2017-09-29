@@ -2,7 +2,7 @@ const {PubgAPI, PubgAPIErrors, REGION, SEASON, MATCH} = require('pubg-api-redis'
 const {InvalidFetchType} = require('./pubg-pusher-errors');
 const {FetchParameters} = require('./fetchparameters');
 
-const api = new PubgAPI({
+const API = new PubgAPI({
   apikey: process.env.PUBGTRACKER_API_KEY,
   redisConfig: false
   // redisConfig: {
@@ -60,7 +60,7 @@ class Fetch {
   
 
   fetch_single(name) {
-    api.getProfileByNickname(name).then( 
+    API.getProfileByNickname(name).then(
       profile => {
         const stats = profile.getStats({
           region: REGION.NA,

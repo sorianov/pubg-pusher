@@ -1,11 +1,19 @@
+const {InvalidFetchType,
+  InvalidRegionType,
+  InvalidSeasonType,
+  InvalidMatchType,
+  InvalidStatsParametersType} = require('./pubg-pusher-errors');
+
 class Verify 
 {
-	constructor()
+	constructor(stats_parameters)
 	{
-
+		this.region = stats_parameters['region'];
+		this.season = stats_parameters['season'];
+		this.match = stats_parameters['match'];
 	}
 
-	verify_region (region) 
+	verify_region (region=this.region) 
 	{
 		switch (region) 
 		{
@@ -20,13 +28,13 @@ class Verify
 				this.region = REGION.ALL;
 				return true;
 			default:
-				throw new InvalidRegionType(region);
+				throw new InvalidRegionType();
 				return false;
 
 		}
 	}
 
-	verify_seasion (season) 
+	verify_seasion (season=this.season) 
 	{
 		switch (season) 
 		{
@@ -50,7 +58,7 @@ class Verify
 		}
 	}
 
-	verify_match (match) 
+	verify_match (match=this.match) 
 	{
 		switch (match) 
 		{
@@ -92,7 +100,7 @@ class Verify
 		}
 	}
 
-	verify_all_parameters(stats_parameters)
+	verify_all_parameters(stats_parameters=this.stats_parameters)
 	{
 		if (typeof stats_parameters === 'object')
 		{

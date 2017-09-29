@@ -53,3 +53,7 @@ class FetchParameters
 	}
 
 }
+
+module.exports = {
+	FetchParameters,
+};

@@ -24,15 +24,21 @@ class Fetch {
   }
 
   fetch (){
-    API.getProfileByNickname(this.nickname).then(
-     profile => {
-      profile.getStats(this.fetch_parameters).then(
-        stats => {
-          console.log(stats);
-        })
+    console.log("fetch()")
+    let stats = {};
+    API.getProfileByNickname(this.nickname).then((o) => {
+      try {
+        stats = o.getMatchHistory();
+      } catch (e) {
+        console.log(e);
+        return e;
+        // TODO: Add Discord reply for stats not found
+      }
 
-     } )
-
+      let parsed_stats = this.parse_result(stats);
+    }, (r) => {
+      console.log("Something went wrong...\n", r);
+    })
   }
   
   fetcher(name, specific_stats) {

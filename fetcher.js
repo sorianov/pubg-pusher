@@ -15,12 +15,6 @@ const API = new PubgAPI({
 class Fetch {
   constructor(nickname,region='na',season='current',match='squadfpp'){
     this.nickname = nickname;
-    this.fetch_parameters = new FetchParameters(
-      region,
-      season,
-      match 
-      );
-
   }
 
   fetch (){

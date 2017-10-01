@@ -38,7 +38,7 @@ class InvalidStatsParametersType extends Error
 {
 	constructor(msg) 
 	{
-		super(msg || 'Not and object');
+		super(msg || 'Not an object');
 		this.name = this.constructor.name;
 	}
 }

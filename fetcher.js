@@ -45,10 +45,13 @@ class Fetch {
     results = fetch_decision(name)
     final_results = parse_result(specific_stats)
   }  
+  parse_result(stats) {
+    if (stats.hasOwnProperty('matchHistory')) {
+      let last_match_history = stats.matchHistory
+      console.log(last_match_history);
+    }
 
-  parse_result(specific_stats) {
-    //TODO: ADD FUNCTIONALITY
-    return specific_stats;
+    // return parsed_stats;
   }
   
 

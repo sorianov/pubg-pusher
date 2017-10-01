@@ -2,7 +2,7 @@ const {PubgAPI, PubgAPIErrors, REGION, SEASON, MATCH} = require('pubg-api-redis'
 const {InvalidFetchType} = require('./pubg-pusher-errors');
 const {FetchParameters} = require('./fetchparameters');
 
-const api = new PubgAPI({
+const API = new PubgAPI({
   apikey: process.env.PUBGTRACKER_API_KEY,
   redisConfig: false
   // redisConfig: {
@@ -15,34 +15,37 @@ const api = new PubgAPI({
 class Fetch {
   constructor(nickname,region='na',season='current',match='squadfpp'){
     this.nickname = nickname;
-    this.fetch_parameters = new FetchParameters(
-      region,
-      season,
-      match 
-      );
-
   }
 
   fetch (){
-    API.getProfileByNickname(this.nickname).then(
-     profile => {
-      profile.getStats(this.fetch_parameters).then(
-        stats => {
-          console.log(stats);
-        })
+    console.log("fetch()")
+    let stats = {};
+    API.getProfileByNickname(this.nickname).then((o) => {
+      try {
+        stats = o.getMatchHistory();
+      } catch (e) {
+        console.log(e);
+        return e;
+        // TODO: Add Discord reply for stats not found
+      }
 
-     } )
-
+      let parsed_stats = this.parse_result(stats);
+    }, (r) => {
+      console.log("Something went wrong...\n", r);
+    })
   }
   
   fetcher(name, specific_stats) {
     results = fetch_decision(name)
     final_results = parse_result(specific_stats)
   }  
+  parse_result(stats) {
+    if (stats.hasOwnProperty('matchHistory')) {
+      let last_match_history = stats.matchHistory
+      console.log(last_match_history);
+    }
 
-  parse_result(specific_stats) {
-    //TODO: ADD FUNCTIONALITY
-    return specific_stats;
+    // return parsed_stats;
   }
   
 
@@ -60,7 +63,7 @@ class Fetch {
   
 
   fetch_single(name) {
-    api.getProfileByNickname(name).then( 
+    API.getProfileByNickname(name).then(
       profile => {
         const stats = profile.getStats({
           region: REGION.NA,

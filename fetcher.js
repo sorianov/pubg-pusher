@@ -1,6 +1,5 @@
 const {PubgAPI, PubgAPIErrors, REGION, SEASON, MATCH} = require('pubg-api-redis');
 const {InvalidFetchType} = require('./pubg-pusher-errors');
-const {FetchParameters} = require('./fetchparameters');
 
 const API = new PubgAPI({
   apikey: process.env.PUBGTRACKER_API_KEY,

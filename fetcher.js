@@ -38,10 +38,20 @@ class Fetch {
     results = fetch_decision(name)
     final_results = parse_result(specific_stats)
   }  
-  parse_result(stats) {
-    if (stats.hasOwnProperty('matchHistory')) {
-      let last_match_history = stats.matchHistory
-      console.log(last_match_history);
+  parse_result(stats, requested_stats=[]) {
+    if (stats.hasOwnProperty('MatchHistory')) {
+      let last_match_history = stats.MatchHistory[0];
+      console.log(last_match_history['Updated']);
+
+      let interesting_stats = { Updated: last_match_history['Updated'],
+                                MatchDisplay: last_match_history['MatchDisplay'],
+                                Kills: last_match_history['Kills'],
+                                Assists: last_match_history['Assists'],
+                                Headshots: last_match_history['Headshots'],
+                                Damage: last_match_history['Damage'] }
+
+      console.log(interesting_stats);
+
     }
 
     // return parsed_stats;

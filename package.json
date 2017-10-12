@@ -5,7 +5,8 @@
   "author": "First Last <first.last@example.com>",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "preinstall": "npm install",
+    "start": "node app.js",
   },
   "dependencies": {
     "discord.js": "^11.2.1",

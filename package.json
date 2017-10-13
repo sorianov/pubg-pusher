@@ -4,15 +4,32 @@
   "description": "PUBG stats pusher bot",
   "author": "First Last <first.last@example.com>",
   "main": "app.js",
+  "watch": {
+    "spec": {
+      "patterns": [
+        "src",
+        "spec"
+      ],
+      "extensions": "js",
+      "quiet": true
+    }
+  },
   "scripts": {
-    "preinstall": "npm install",
+    "preinstall": "npm install && npm install jasmine -g",
     "start": "node app.js",
+    "spec": "standard && jasmine spec/*.js",
+    "watch": "npm-watch"
   },
   "dependencies": {
     "discord.js": "^11.2.1",
-    "expect.js": "^0.3.1",
-    "express": "^4.15.4",
+    "express": "^4.16.2",
     "pubg-api-redis": "^3.6.0",
     "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "npm-watch": "^0.3.0",
+    "standard": "*"
   }
 }

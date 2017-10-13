@@ -4,10 +4,21 @@
   "description": "PUBG stats pusher bot",
   "author": "First Last <first.last@example.com>",
   "main": "app.js",
+  "watch": {
+    "spec": {
+      "patterns": [
+        "src",
+        "spec"
+      ],
+      "extensions": "js",
+      "quiet": true
+    }
+  },
   "scripts": {
     "preinstall": "npm install && npm install jasmine -g",
     "start": "node app.js",
     "spec": "jasmine spec/*.js",
+    "watch": "npm-watch"
   },
   "dependencies": {
     "discord.js": "^11.2.1",
@@ -18,5 +29,6 @@
   "devDependencies": {
     "jasmine": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
+    "npm-watch": "^0.3.0",
   }
 }

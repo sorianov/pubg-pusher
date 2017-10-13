@@ -4,11 +4,12 @@ class Formatter {
     this.nickname = nickname
   }
 
-  format_stats() {
-    // Do something to make stats look nice
-    let formatted_stats = this.stats_to_format;
+  format_stats () {
+    let formatted_stats = `For ${this.nickname},`
 
-    return formatted_stats;
+    formatted_stats += (this.createStatString(this.stats_to_format))
+
+    return formatted_stats
   }
 
   createStatString (object) {
@@ -27,5 +28,4 @@ class Formatter {
 }
 module.exports = {
   Formatter
-};
-
+}

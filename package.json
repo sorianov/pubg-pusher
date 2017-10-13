@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "discord.js": "^11.2.1",
-    "expect.js": "^0.3.1",
-    "express": "^4.15.4",
+    "express": "^4.16.2",
     "pubg-api-redis": "^3.6.0",
     "redis": "^2.8.0"
   }

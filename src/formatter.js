@@ -1,6 +1,7 @@
 class Formatter {
-  constructor(stats_to_format){
-    this.stats_to_format = stats_to_format;
+  constructor (nickname, stats_to_format) {
+    this.stats_to_format = stats_to_format
+    this.nickname = nickname
   }
 
   format_stats() {

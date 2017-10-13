@@ -11,7 +11,19 @@ class Formatter {
     return formatted_stats;
   }
 
+  createStatString (object) {
+    let stat_string = ''
+    if (object.hasOwnProperty('hs')) {
+      stat_string += (` Headshots: ${object.hs},`)
+    }
+    if (object.hasOwnProperty('damage')) {
+      stat_string += (` Damage: ${object.damage},`)
+    }
 
+    stat_string = stat_string.slice(0, -1)
+
+    return stat_string
+  }
 }
 module.exports = {
   Formatter

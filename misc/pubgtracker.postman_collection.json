@@ -1,0 +1,28 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pubgtracker",
+		"_postman_id": "5bc658be-66aa-742b-f1d8-e09a1bf7a792",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://pubgtracker.com/api/profile/pc/just____",
+			"request": {
+				"url": "https://pubgtracker.com/api/profile/pc/just____",
+				"method": "GET",
+				"header": [
+					{
+						"key": "TRN-Api-Key",
+						"value": "da356f7c-1978-49f5-873b-9a03e2a71c9d",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -4,9 +4,9 @@ RUN apk update && apk add --update bash && rm -rf /var/cache/apk/*
 
 ENV app pubg-pusher
 
-RUN mkdir -p /usr/src/$app
+RUN mkdir $app
 
-WORKDIR /usr/src/$app
+WORKDIR $app
 
 COPY package.json .
 

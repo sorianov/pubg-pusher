@@ -15,9 +15,8 @@
     }
   },
   "scripts": {
-    "preinstall": "npm install && npm install jasmine -g",
     "start": "node app.js",
-    "spec": "standard && jasmine spec/*.js",
+    "spec": "jasmine spec/*.js",
     "watch": "npm-watch"
   },
   "dependencies": {

@@ -3,17 +3,20 @@ version: '3'
 services:
   pubg-pusher:
     build: .
-    command: npm start
+    command: "node app.js"
     container_name: pubg_pusher_app
     environment:
-      PUBGTRACKER_API_KEY: "${PUBGTRACKER_API_KEY}"
       DISCORD_API_KEY: "${DISCORD_API_KEY}"
+      NODE_ENV: "development"
+      PUBGTRACKER_API_KEY: "${PUBGTRACKER_API_KEY}"
     networks:
       - test
     ports:
       - "8080:8080"
+    user: node
     volumes:
-      - .:/usr/src/pubg-pusher
+      - .:/pubg-pusher
+       - /pubg-pusher/node_modules
 
 networks:
   test:

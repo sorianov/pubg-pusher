@@ -13,7 +13,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - .:/usr/src/pubg-pusher
+      - .:/pubg-pusher
+       - /pubg-pusher/node_modules
 
 networks:
   test:

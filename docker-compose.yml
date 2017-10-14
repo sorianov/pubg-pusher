@@ -3,7 +3,7 @@ version: '3'
 services:
   pubg-pusher:
     build: .
-    command: npm start
+    command: "node app.js"
     container_name: pubg_pusher_app
     environment:
       PUBGTRACKER_API_KEY: "${PUBGTRACKER_API_KEY}"
